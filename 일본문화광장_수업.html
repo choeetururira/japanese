@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>일본 문화광장 수업</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0B2F2E;overflow:hidden;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;display:none !important}
+.slide.on{display:flex !important}
+.slide[style*="display:grid"].on{display:grid !important}
+.slide h1,.slide h2,.slide h3,.slide p{margin:0;word-break:keep-all}
+.slide h1{line-height:1.1} .slide h2{line-height:1.15} .slide h3{line-height:1.2} .slide p{line-height:1.4}
+.slide aside{display:none}
+[data-build-in]{transition:opacity .45s ease}
+[data-build-in].hide{opacity:0}
+#bar{position:fixed;right:16px;bottom:12px;display:flex;gap:8px;align-items:center;font:16px Arial,sans-serif;color:#EAF6F5;opacity:.25;transition:opacity .2s}
+#bar:hover{opacity:1}
+#bar button{font:inherit;background:#0E7C77;color:#fff;border:0;border-radius:8px;padding:6px 12px;cursor:pointer}
+#hint{position:fixed;left:16px;bottom:12px;font:14px Arial,sans-serif;color:#EAF6F5;opacity:.35}
+</style></head>
+<body>
+<div id="stage">
+<section class="slide" id="cover" data-transition="fade" style="background:#0B5E5C;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="font-size:40px;color:#FDE6DC">日本語会話 · 문화 수업</p>
+<h1 style="font-size:160px;font-weight:700;line-height:1.1;color:#FBFDFC">ぶんかの ひろば</h1>
+<p style="font-size:72px;color:#F2B544">일본 문화광장 1 ~ 4</p>
+<p style="font-size:110px;line-height:1.3">🙇 🎁 ⛩️ 🎆</p>
+<aside>오늘은 교과서의 문화광장(ぶんかのひろば) 1~4를 핵심 키워드 중심으로 배우고, 문화광장마다 확인 퀴즈를 풉니다.</aside>
+</section>
+<section class="slide" id="overview" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">오늘 만날 4개의 문화광장</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:32px;flex:1">
+<div style="background:#EAF6F5;border-radius:32px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">🙇</p>
+<p style="font-size:32px;color:#C43E1A">문화광장 1</p>
+<h3 style="font-size:48px;font-weight:400;line-height:1.2;text-align:center;color:#0B5E5C">인사 문화</h3>
+<p style="font-size:32px;line-height:1.5;text-align:center">えしゃく<br>けいれい<br>さいけいれい</p>
+</div>
+<div style="background:#FDE6DC;border-radius:32px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">🎁</p>
+<p style="font-size:32px;color:#C43E1A">문화광장 2</p>
+<h3 style="font-size:48px;font-weight:400;line-height:1.2;text-align:center;color:#0B5E5C">선물 문화</h3>
+<p style="font-size:32px;line-height:1.5;text-align:center">おみやげ<br>おちゅうげん<br>おせいぼ<br>おかえし</p>
+</div>
+<div style="background:#EAF6F5;border-radius:32px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">⛩️</p>
+<p style="font-size:32px;color:#C43E1A">문화광장 3</p>
+<h3 style="font-size:48px;font-weight:400;line-height:1.2;text-align:center;color:#0B5E5C">오미쿠지와<br>오마모리</h3>
+<p style="font-size:32px;line-height:1.5;text-align:center">えんぎもの<br>おみくじ<br>おまもり</p>
+</div>
+<div style="background:#FDE6DC;border-radius:32px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">🎆</p>
+<p style="font-size:32px;color:#C43E1A">문화광장 4</p>
+<h3 style="font-size:48px;font-weight:400;line-height:1.2;text-align:center;color:#0B5E5C">불꽃 축제와<br>관련 직업</h3>
+<p style="font-size:32px;line-height:1.5;text-align:center">はなび<br>はなびし</p>
+</div>
+</div>
+<aside>각 문화광장마다 핵심 키워드 → 확인 퀴즈 순서로 진행합니다. 학습지의 빈칸(네모 칸)이 핵심 키워드입니다.</aside>
+</section>
+<section class="slide" id="g-div" data-transition="fade" style="background:#0E7C77;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="position:absolute;right:128px;top:96px;width:280px;font-size:200px;line-height:1.2;text-align:right">🙇</p>
+<p style="font-size:48px;color:#FDE6DC">문화광장 1</p>
+<h1 style="font-size:120px;font-weight:400;line-height:1.1;color:#FBFDFC">일본의 인사 문화</h1>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+<p style="font-size:40px;color:#FDE6DC">키워드</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">えしゃく</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">けいれい</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">さいけいれい</p>
+</div>
+</section>
+<section class="slide" id="g-bow" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">고개를 숙이는 각도로 구분해요</h2>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:1;background:#EAF6F5;border-radius:32px;padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:112px;line-height:1.1;color:#C43E1A;white-space:nowrap">15°</p>
+<p style="font-size:64px;font-weight:700;color:#0B5E5C">えしゃく</p>
+<p style="font-size:36px;color:#5F7472">가벼운 인사</p>
+<p style="font-size:40px;line-height:1.4;text-align:center">가장 일반적인<br>인사법</p>
+</div>
+<div style="flex:1;background:#0B5E5C;color:#FBFDFC;border-radius:32px;padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:112px;line-height:1.1;color:#F2B544;white-space:nowrap">30°</p>
+<p style="font-size:64px;font-weight:700;color:#FBFDFC">けいれい</p>
+<p style="font-size:36px;color:#FDE6DC">경례</p>
+<p style="font-size:40px;line-height:1.4;text-align:center">처음 만났을 때,<br>자기소개 할 때</p>
+</div>
+<div style="flex:1;background:#EAF6F5;border-radius:32px;padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:112px;line-height:1.1;color:#C43E1A;white-space:nowrap">45~90°</p>
+<p style="font-size:64px;font-weight:700;color:#0B5E5C">さいけいれい</p>
+<p style="font-size:36px;color:#5F7472">경례보다 공손한 인사</p>
+<p style="font-size:40px;line-height:1.4;text-align:center">아주 높은 사람,<br>존경하는 사람에게</p>
+</div>
+</div>
+<aside>만남·감사·사과·부탁할 때 인사하는 것은 세계 공통이지만, 일본은 상황에 따라 고개를 숙이는 각도가 다릅니다. 학생들과 15°, 30°, 45° 인사를 직접 따라 해 보세요.</aside>
+</section>
+<section class="slide" id="g-intro" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">인사하며 자기소개 하기</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">1</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">경례</h3></div>
+<p style="font-size:40px;color:#C43E1A">30° けいれい</p>
+</div>
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">2</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">첫 만남의 인사</h3></div>
+<p style="font-size:40px;color:#C43E1A">はじめまして。</p>
+</div>
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">3</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">이름과 소속 소개</h3></div>
+<p style="font-size:40px;color:#C43E1A">〇〇です。</p>
+</div>
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">4</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">나를 소개하는 말</h3></div>
+<p style="font-size:40px;color:#C43E1A">취미 · 특기</p>
+</div>
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">5</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">마무리 인사</h3></div>
+<p style="font-size:36px;color:#C43E1A">よろしく おねがいします。</p>
+</div>
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px"><p style="font-size:32px;width:56px;height:56px;line-height:56px;text-align:center;background:#C43E1A;color:#FBFDFC;border-radius:50%">6</p><h3 style="font-size:40px;font-weight:400;color:#0B5E5C">경례</h3></div>
+<p style="font-size:40px;color:#C43E1A">30° けいれい</p>
+</div>
+</div>
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 40px;display:flex;align-items:center;gap:32px">
+<p style="font-size:72px;line-height:1.2">💡</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:28px;color:#C43E1A">생각해 보기</p>
+<p style="font-size:44px;line-height:1.3">경례(けいれい)는 처음 만났을 때 또는 <span style="color:#C43E1A">(　　　　　)</span> 할 때 하는 인사!</p>
+</div>
+</div>
+<aside>정답: 자기소개. ⑤ 마무리 인사 よろしく おねがいします(잘 부탁드립니다)가 학습지 빈칸입니다. 짝과 함께 경례 → 자기소개 → 경례 순서로 연습시켜 보세요.</aside>
+</section>
+<section class="slide" id="g-card" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">비즈니스에서는 명함(めいし) 교환</h2>
+<div style="display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;align-items:center;gap:40px">
+<p style="font-size:72px;width:140px;height:140px;line-height:140px;text-align:center;background:#EAF6F5;border-radius:50%">📇</p>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:56px;font-weight:400;color:#0B5E5C">미리 준비하기</h3><p style="font-size:36px;color:#5F7472">명함은 만나기 전에 미리 준비해요</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:40px">
+<p style="font-size:72px;width:140px;height:140px;line-height:140px;text-align:center;background:#FDE6DC;border-radius:50%">🤝</p>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:56px;font-weight:400;color:#0B5E5C">오른손으로 건네고, 왼손으로 받기</h3><p style="font-size:36px;color:#5F7472">주로 오른손으로 건네고 왼손으로 받아요</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:40px">
+<p style="font-size:72px;width:140px;height:140px;line-height:140px;text-align:center;background:#EAF6F5;border-radius:50%">👀</p>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:56px;font-weight:400;color:#0B5E5C">천천히, 또박또박</h3><p style="font-size:36px;color:#5F7472">상대방의 눈을 보며 말해요</p></div>
+</div>
+</div>
+<aside>탐구 활동: 세계의 다양한 인사 문화를 조사하여 발표해 봅시다.</aside>
+</section>
+<section class="slide" id="g-quiz" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">확인 퀴즈 1 🙇</h2>
+<div style="position:absolute;left:128px;top:220px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">1</p><p style="flex:1;font-size:36px;line-height:1.25">고개를 15° 숙이는 가장 일반적인 가벼운 인사는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:368px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">2</p><p style="flex:1;font-size:36px;line-height:1.25">처음 만났을 때·자기소개 할 때 30° 숙이는 인사는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:516px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">3</p><p style="flex:1;font-size:36px;line-height:1.25">아주 높은 사람에게 45°~90° 숙이는 공손한 인사는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:664px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">4</p><p style="flex:1;font-size:36px;line-height:1.25">자기소개를 마칠 때 하는 인사말 ‘잘 부탁드립니다’는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:812px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">5</p><p style="flex:1;font-size:36px;line-height:1.25">명함은 주로 (　　)손으로 건네고, 왼손으로 받는다</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<p data-build-in="fade 1" style="position:absolute;left:1152px;top:232px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">えしゃく</p>
+<p data-build-in="fade 2" style="position:absolute;left:1152px;top:380px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">けいれい</p>
+<p data-build-in="fade 3" style="position:absolute;left:1152px;top:528px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">さいけいれい</p>
+<p data-build-in="fade 4" style="position:absolute;left:1152px;top:676px;width:616px;height:100px;font-size:40px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">よろしく おねがいします</p>
+<p data-build-in="fade 5" style="position:absolute;left:1152px;top:824px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">오른손</p>
+<aside>발표(Present) 모드에서 Enter·스페이스·클릭할 때마다 1번부터 정답이 하나씩 나타납니다. 학생들이 먼저 학습지에 답을 쓰게 한 뒤 공개하세요.</aside>
+</section>
+<section class="slide" id="p-div" data-transition="fade" style="background:#0E7C77;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="position:absolute;right:128px;top:96px;width:280px;font-size:200px;line-height:1.2;text-align:right">🎁</p>
+<p style="font-size:48px;color:#FDE6DC">문화광장 2</p>
+<h1 style="font-size:120px;font-weight:400;line-height:1.1;color:#FBFDFC">일본의 선물 문화</h1>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+<p style="font-size:40px;color:#FDE6DC">키워드</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おみやげ</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">プレゼント</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おちゅうげん</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おせいぼ</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おかえし</p>
+</div>
+</section>
+<section class="slide" id="p-names" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">선물의 용도에 따라 이름이 달라요</h2>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:1;background:#EAF6F5;border-radius:32px;padding:48px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">🏠</p>
+<p style="font-size:96px;font-weight:700;line-height:1.2;color:#0B5E5C">おみやげ</p>
+<p style="font-size:36px;color:#5F7472">오미야게</p>
+<p style="font-size:40px;line-height:1.4;text-align:center">남의 집 방문할 때 준비하는 선물<br>여행지에서 사 온 선물</p>
+</div>
+<div style="flex:1;background:#FDE6DC;border-radius:32px;padding:48px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:96px;line-height:1.2">🎂</p>
+<p style="font-size:96px;font-weight:700;line-height:1.2;color:#C43E1A">プレゼント</p>
+<p style="font-size:36px;color:#5F7472">프레젠토</p>
+<p style="font-size:40px;line-height:1.4;text-align:center">생일, 크리스마스 등<br>특별한 날에 주는 선물</p>
+</div>
+</div>
+<aside>로보타로: 일본에서는 선물의 용도에 따라 이름이 다릅니다.</aside>
+</section>
+<section class="slide" id="p-season" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">계절마다 감사의 마음을 전하는 선물</h2>
+<p style="font-size:40px;color:#5F7472">평소 신세를 진 지인, 직장 상사, 친척 등에게 보내요</p>
+<div style="display:flex;gap:40px;flex:1">
+<div style="flex:1;background:#FDE6DC;border-radius:32px;padding:48px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:48px;color:#C43E1A">☀️ 여름 선물</p>
+<p style="font-size:96px;font-weight:700;line-height:1.2;color:#1E2426">おちゅうげん</p>
+<p style="font-size:36px;color:#5F7472">오추겐</p>
+<p style="font-size:56px;color:#C43E1A">7월 초 ~ 8월 중순</p>
+</div>
+<div style="flex:1;background:#EAF6F5;border-radius:32px;padding:48px;display:flex;flex-direction:column;align-items:center;gap:20px">
+<p style="font-size:48px;color:#0B5E5C">❄️ 연말 선물</p>
+<p style="font-size:96px;font-weight:700;line-height:1.2;color:#1E2426">おせいぼ</p>
+<p style="font-size:36px;color:#5F7472">오세보</p>
+<p style="font-size:56px;color:#0B5E5C">연말 (12월)</p>
+</div>
+</div>
+<aside>지역마다 시기는 조금씩 차이가 있습니다. 오추겐은 7월 초~8월 중순, 오세보는 연말에 보내는 선물입니다.</aside>
+</section>
+<section class="slide" id="p-okaeshi" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">받으면 꼭 답례하기 – おかえし</h2>
+<div style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:40px">
+<p style="font-size:72px;width:140px;height:140px;line-height:140px;text-align:center;background:#FDE6DC;border-radius:50%">🔁</p>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:56px;font-weight:400;color:#C43E1A">おかえし <span style="color:#5F7472">오카에시</span></h3><p style="font-size:40px">선물을 받으면 가까운 시일 안에 답례하거나 감사의 말을 전해요</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:40px">
+<p style="font-size:72px;width:140px;height:140px;line-height:140px;text-align:center;background:#EAF6F5;border-radius:50%">🍪</p>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:56px;font-weight:400;color:#0B5E5C">어떤 선물을 줄까?</h3><p style="font-size:40px">실용적이면서 부담스럽지 않은 금액의 과자류 등을 준비해요</p></div>
+</div>
+</div>
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 40px;display:flex;align-items:center;gap:32px">
+<p style="font-size:72px;line-height:1.2">💡</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:28px;color:#C43E1A">생각해 보기</p>
+<p style="font-size:44px;line-height:1.3">일본 친구에게 한국에서 가져온 과자나 특산물을 주면 <span style="color:#C43E1A">(　　　　　)</span>가 되겠네!</p>
+</div>
+</div>
+<aside>정답: おみやげ(오미야게). 탐구 활동: 일본인이 한국에서 많이 사는 오미야게는 무엇이 있는지 조사하여 발표해 봅시다.</aside>
+</section>
+<section class="slide" id="p-quiz" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">확인 퀴즈 2 🎁</h2>
+<div style="position:absolute;left:128px;top:220px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">1</p><p style="flex:1;font-size:36px;line-height:1.25">남의 집을 방문할 때 준비하거나, 여행지에서 사 온 선물은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:368px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">2</p><p style="flex:1;font-size:36px;line-height:1.25">생일·크리스마스 등 특별한 날에 주는 선물은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:516px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">3</p><p style="flex:1;font-size:36px;line-height:1.25">7월 초 ~ 8월 중순에 감사의 마음을 담아 보내는 선물은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:664px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">4</p><p style="flex:1;font-size:36px;line-height:1.25">연말에 감사의 마음을 담아 보내는 선물은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:812px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">5</p><p style="flex:1;font-size:36px;line-height:1.25">선물을 받은 뒤 보답으로 하는 답례를 무엇이라고 할까?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<p data-build-in="fade 1" style="position:absolute;left:1152px;top:232px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おみやげ</p>
+<p data-build-in="fade 2" style="position:absolute;left:1152px;top:380px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">プレゼント</p>
+<p data-build-in="fade 3" style="position:absolute;left:1152px;top:528px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おちゅうげん</p>
+<p data-build-in="fade 4" style="position:absolute;left:1152px;top:676px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おせいぼ</p>
+<p data-build-in="fade 5" style="position:absolute;left:1152px;top:824px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おかえし</p>
+<aside>발표(Present) 모드에서 Enter·스페이스·클릭할 때마다 1번부터 정답이 하나씩 나타납니다.</aside>
+</section>
+<section class="slide" id="o-div" data-transition="fade" style="background:#0E7C77;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="position:absolute;right:128px;top:96px;width:280px;font-size:200px;line-height:1.2;text-align:right">⛩️</p>
+<p style="font-size:48px;color:#FDE6DC">문화광장 3</p>
+<h1 style="font-size:120px;font-weight:400;line-height:1.1;color:#FBFDFC">일본의 오미쿠지와<br>오마모리</h1>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+<p style="font-size:40px;color:#FDE6DC">키워드</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">えんぎもの</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おみくじ</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">おまもり</p>
+</div>
+</section>
+<section class="slide" id="o-engi" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">행운을 비는 물건 – えんぎもの</h2>
+<div style="background:#0B5E5C;color:#FBFDFC;border-radius:32px;padding:36px 48px;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:56px"><span style="color:#F2B544">えんぎもの</span> 엔기모노</p>
+<p style="font-size:36px">행운을 부르거나 길흉을 점치기 위한 물건 – 일본은 운수를 중요하게 여겨요</p>
+</div>
+<p style="font-size:48px;color:#0B5E5C"><span style="color:#C43E1A">おみくじ</span> 오미쿠지는 엔기모노 중 하나!</p>
+<div style="display:flex;gap:32px;flex:1">
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:16px"><p style="font-size:36px;color:#C43E1A">어디서?</p><p style="font-size:40px;line-height:1.4">신사(じんじゃ)나<br>절(おてら)에서</p></div>
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:16px"><p style="font-size:36px;color:#C43E1A">무엇?</p><p style="font-size:40px;line-height:1.4">길흉을 점치는<br>제비(뽑기)</p></div>
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:16px"><p style="font-size:36px;color:#C43E1A">얼마?</p><p style="font-size:40px;line-height:1.4">보통<br>100엔 정도</p></div>
+</div>
+<aside>오미쿠지 통을 흔들어 뽑은 막대의 숫자에 해당하는 오미쿠지를 확인합니다.</aside>
+</section>
+<section class="slide" id="o-result" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">오미쿠지 결과는 대길부터 흉까지</h2>
+<div style="display:flex;gap:32px;flex:1">
+<div style="width:300px;background:#FBFDFC;border:6px solid #C43E1A;border-radius:12px;padding:32px 16px;display:flex;flex-direction:column;align-items:center;gap:16px">
+<p style="font-size:120px;font-weight:700;line-height:1.1;color:#C43E1A">大吉</p><p style="font-size:36px">だいきち</p><p style="font-size:64px;color:#C43E1A">대길</p><p style="font-size:32px;color:#5F7472">제일 좋은 운세</p>
+</div>
+<div style="width:300px;background:#FBFDFC;border:6px solid #0B5E5C;border-radius:12px;padding:32px 16px;display:flex;flex-direction:column;align-items:center;gap:16px">
+<p style="font-size:120px;font-weight:700;line-height:1.1;color:#0B5E5C">吉</p><p style="font-size:36px">きち</p><p style="font-size:64px;color:#0B5E5C">길</p><p style="font-size:32px;color:#5F7472">좋은 운세</p>
+</div>
+<div style="width:300px;background:#FBFDFC;border:6px solid #5F7472;border-radius:12px;padding:32px 16px;display:flex;flex-direction:column;align-items:center;gap:16px">
+<p style="font-size:120px;font-weight:700;line-height:1.1;color:#5F7472">凶</p><p style="font-size:36px">きょう</p><p style="font-size:64px;color:#5F7472">흉</p><p style="font-size:32px;color:#5F7472">좋지 않은 운세</p>
+</div>
+<div style="flex:1;background:#FDE6DC;border-radius:32px;padding:40px;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:48px;color:#C43E1A">‘흉’이 나오면?</p>
+<p style="font-size:44px;line-height:1.35">신사에 마련된 장소에 묶어 두고 가요 🎋</p>
+<p style="font-size:32px;line-height:1.4;color:#5F7472">‘길’ 이상이면 가지고 가기도 하고, 길흉에 상관없이 모두 묶어 두기도 해요</p>
+</div>
+</div>
+</section>
+<section class="slide" id="o-omamori" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">부적 같은 작은 주머니 – おまもり</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:40px;line-height:1.35">신사나 절에서 파는 작은 주머니. 안에는 신의 이름이나 주문이 적혀 있어요</p>
+<p style="font-size:36px;color:#5F7472">몸에 지니거나 휴대폰·자동차 등에 매달고 다녀요</p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;background:#FDE6DC;border-radius:28px;padding:32px;display:flex;align-items:center;gap:24px"><p style="font-size:80px;line-height:1.2">🎓</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:48px;font-weight:400;color:#C43E1A">학업 성취</h3><p style="font-size:32px;color:#5F7472">시험 합격</p></div></div>
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:32px;display:flex;align-items:center;gap:24px"><p style="font-size:80px;line-height:1.2">💪</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:48px;font-weight:400;color:#0B5E5C">건강</h3><p style="font-size:32px;color:#5F7472">아프지 않게</p></div></div>
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:32px;display:flex;align-items:center;gap:24px"><p style="font-size:80px;line-height:1.2">🚗</p><div style="display:flex;flex-direction:column;gap:4px"><h3 style="font-size:48px;font-weight:400;color:#0B5E5C">교통안전</h3><p style="font-size:32px;color:#5F7472">안전한 이동</p></div></div>
+</div>
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 40px;display:flex;align-items:center;gap:32px">
+<p style="font-size:72px;line-height:1.2">✍️</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:28px;color:#C43E1A">자기 의견 쓰기</p>
+<p style="font-size:44px;line-height:1.3">나는 <span style="color:#C43E1A">(　　　　　　　)</span>을/를 위해 오마모리를 사고 싶어.</p>
+</div>
+</div>
+<aside>학생 각자 오마모리를 사고 싶은 이유를 학습지에 쓰고 발표하게 합니다. 탐구 활동: 일본의 다양한 엔기모노(えんぎもの)에 대해 조사해서 발표해 봅시다.</aside>
+</section>
+<section class="slide" id="o-quiz" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">확인 퀴즈 3 ⛩️</h2>
+<div style="position:absolute;left:128px;top:220px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">1</p><p style="flex:1;font-size:36px;line-height:1.25">행운을 부르거나 길흉을 점치기 위한 물건은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:368px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">2</p><p style="flex:1;font-size:36px;line-height:1.25">신사나 절에서 파는, 길흉을 점치는 제비(뽑기)는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:516px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">3</p><p style="flex:1;font-size:36px;line-height:1.25">오미쿠지에서 가장 좋은 운세는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:664px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">4</p><p style="flex:1;font-size:36px;line-height:1.25">신사나 절에서 파는, 부적 같은 작은 주머니는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:812px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">5</p><p style="flex:1;font-size:36px;line-height:1.25">‘흉’이 나오면 오미쿠지를 신사에 (　　　　)</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<p data-build-in="fade 1" style="position:absolute;left:1152px;top:232px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">えんぎもの</p>
+<p data-build-in="fade 2" style="position:absolute;left:1152px;top:380px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おみくじ</p>
+<p data-build-in="fade 3" style="position:absolute;left:1152px;top:528px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">大吉（だいきち）</p>
+<p data-build-in="fade 4" style="position:absolute;left:1152px;top:676px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">おまもり</p>
+<p data-build-in="fade 5" style="position:absolute;left:1152px;top:824px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">묶어 둔다</p>
+<aside>발표(Present) 모드에서 Enter·스페이스·클릭할 때마다 1번부터 정답이 하나씩 나타납니다.</aside>
+</section>
+<section class="slide" id="h-div" data-transition="fade" style="background:#0E7C77;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="position:absolute;right:128px;top:96px;width:280px;font-size:200px;line-height:1.2;text-align:right">🎆</p>
+<p style="font-size:48px;color:#FDE6DC">문화광장 4</p>
+<h1 style="font-size:120px;font-weight:400;line-height:1.1;color:#FBFDFC">불꽃 축제와 관련된 직업</h1>
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+<p style="font-size:40px;color:#FDE6DC">키워드</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">はなび</p>
+<p style="font-size:44px;background:#FBFDFC;color:#0B5E5C;padding:12px 36px;border-radius:999px">はなびし</p>
+</div>
+</section>
+<section class="slide" id="h-job" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">불꽃을 기획하고 준비하는 사람 – はなびし</h2>
+<div style="background:#0B5E5C;color:#FBFDFC;border-radius:32px;padding:36px 48px;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:56px"><span style="color:#F2B544">はなび</span> 불꽃 + <span style="color:#F2B544">し</span> 사람 = <span style="color:#F2B544">はなびし</span> 하나비시</p>
+<p style="font-size:36px">축제 콘셉트에 맞게 불꽃 축제를 기획·연출하는 ‘불꽃 연출가’, ‘불꽃 디자이너’</p>
+</div>
+<p style="font-size:48px;color:#0B5E5C">하나비시가 되려면 무엇이 필요할까?</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;align-items:center;gap:24px"><p style="font-size:72px;line-height:1.2">💻</p><p style="font-size:40px;line-height:1.3">컴퓨터<br>운영 능력</p></div>
+<div style="flex:1;background:#FDE6DC;border-radius:28px;padding:28px 32px;display:flex;align-items:center;gap:24px"><p style="font-size:72px;line-height:1.2">🧪</p><p style="font-size:40px;line-height:1.3">화약에 대한<br>전문 지식</p></div>
+<div style="flex:1;background:#EAF6F5;border-radius:28px;padding:28px 32px;display:flex;align-items:center;gap:24px"><p style="font-size:72px;line-height:1.2">🎨</p><p style="font-size:40px;line-height:1.3">예술적<br>감각</p></div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#5F7472">📜 ‘폭발물 취급/제조 보안 책임자’ 자격 + 안전 세미나로 ‘연기 및 화재 소비 안전 핸드북’ 취득</p>
+</section>
+<section class="slide" id="h-korea" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">한국에도 하나비시 같은 직업이 있을까?</h2>
+<div style="display:flex;gap:32px">
+<div style="width:520px;background:#0B5E5C;color:#FBFDFC;border-radius:32px;padding:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+<p style="font-size:120px;line-height:1.1;color:#F2B544">약 20명</p>
+<p style="font-size:36px;line-height:1.35;text-align:center">불꽃 축제를 총괄하는<br>불꽃 연출가</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 36px;display:flex;align-items:center;gap:28px"><p style="font-size:72px;line-height:1.2">📜</p><div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:44px;font-weight:400;color:#C43E1A">화약 관련 자격증</h3><p style="font-size:32px">불꽃 연출가가 되려면 꼭 취득해야 해요</p></div></div>
+<div style="background:#EAF6F5;border-radius:28px;padding:28px 36px;display:flex;align-items:center;gap:28px"><p style="font-size:72px;line-height:1.2">🏫</p><div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:44px;font-weight:400;color:#0B5E5C">대학 강의 ‘불꽃 축제 특수 효과’</h3><p style="font-size:32px">기획·연출·방사 등 모든 과정을 배워요</p></div></div>
+</div>
+</div>
+<div style="background:#FDE6DC;border-radius:28px;padding:28px 40px;display:flex;align-items:center;gap:32px">
+<p style="font-size:72px;line-height:1.2">✍️</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-size:28px;color:#C43E1A">자기 의견 쓰기</p>
+<p style="font-size:44px;line-height:1.3">내가 하나비시(はなびし)라면 <span style="color:#C43E1A">(　　　　　)</span> 모양의 불꽃을 연출하고 싶어.</p>
+</div>
+</div>
+<aside>학생들이 연출하고 싶은 불꽃 모양을 쓰고 발표하게 합니다. 탐구 활동: 일본의 행사와 관련된 다른 직업에 대해 조사해서 발표해 봅시다.</aside>
+</section>
+<section class="slide" id="h-quiz" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">확인 퀴즈 4 🎆</h2>
+<div style="position:absolute;left:128px;top:220px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">1</p><p style="flex:1;font-size:36px;line-height:1.25">일본어로 ‘불꽃’은?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:368px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">2</p><p style="flex:1;font-size:36px;line-height:1.25">불꽃 축제를 기획·연출하는 불꽃 연출가는?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:516px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">3</p><p style="flex:1;font-size:36px;line-height:1.25">하나비시에게 필요한 것: 컴퓨터 능력, (　　) 전문 지식, 예술 감각</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:664px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">4</p><p style="flex:1;font-size:36px;line-height:1.25">한국에서 활동하는 불꽃 연출가는 약 몇 명?</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<div style="position:absolute;left:128px;top:812px;width:1664px;height:124px;background:#EAF6F5;border-radius:24px;display:flex;align-items:center;gap:28px;padding:0 32px"><p style="font-size:32px;width:64px;height:64px;line-height:64px;text-align:center;background:#0B5E5C;color:#FBFDFC;border-radius:50%">5</p><p style="flex:1;font-size:36px;line-height:1.25">한국에서 불꽃 연출가가 되려면 (　　) 관련 자격증이 필요하다</p><div style="width:600px;height:88px;border:4px dashed #1AAFA5;border-radius:20px;background:#FBFDFC"></div></div>
+<p data-build-in="fade 1" style="position:absolute;left:1152px;top:232px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">はなび</p>
+<p data-build-in="fade 2" style="position:absolute;left:1152px;top:380px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">はなびし</p>
+<p data-build-in="fade 3" style="position:absolute;left:1152px;top:528px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">화약</p>
+<p data-build-in="fade 4" style="position:absolute;left:1152px;top:676px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">약 20명</p>
+<p data-build-in="fade 5" style="position:absolute;left:1152px;top:824px;width:616px;height:100px;font-size:44px;line-height:100px;text-align:center;background:#D24A22;color:#FBFDFC;border-radius:20px">화약</p>
+<aside>발표(Present) 모드에서 Enter·스페이스·클릭할 때마다 1번부터 정답이 하나씩 나타납니다.</aside>
+</section>
+<section class="slide" id="summary" data-transition="fade" style="background:#FBFDFC;color:#1E2426;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:96px 128px 128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:72px;font-weight:400;line-height:1.1;color:#0B5E5C">키워드 총정리</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:32px;flex:1">
+<div style="background:#EAF6F5;border-radius:32px;padding:36px 44px;display:flex;flex-direction:column;gap:16px"><h3 style="font-size:48px;font-weight:400;color:#0B5E5C">🙇 1. 인사</h3><p style="font-size:40px;line-height:1.4">えしゃく · けいれい · さいけいれい<br>よろしく おねがいします</p></div>
+<div style="background:#FDE6DC;border-radius:32px;padding:36px 44px;display:flex;flex-direction:column;gap:16px"><h3 style="font-size:48px;font-weight:400;color:#C43E1A">🎁 2. 선물</h3><p style="font-size:40px;line-height:1.4">おみやげ · プレゼント · おかえし<br>おちゅうげん · おせいぼ</p></div>
+<div style="background:#FDE6DC;border-radius:32px;padding:36px 44px;display:flex;flex-direction:column;gap:16px"><h3 style="font-size:48px;font-weight:400;color:#C43E1A">⛩️ 3. 오미쿠지</h3><p style="font-size:40px;line-height:1.4">えんぎもの · おみくじ · おまもり<br>大吉 · 吉 · 凶</p></div>
+<div style="background:#EAF6F5;border-radius:32px;padding:36px 44px;display:flex;flex-direction:column;gap:16px"><h3 style="font-size:48px;font-weight:400;color:#0B5E5C">🎆 4. 불꽃 축제</h3><p style="font-size:40px;line-height:1.4">はなび · はなびし</p></div>
+</div>
+</section>
+<section class="slide" id="end" data-transition="fade" style="background:#0B5E5C;color:#FBFDFC;font-family:'Jua','M PLUS Rounded 1c',Arial,sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<h1 style="font-size:140px;font-weight:700;line-height:1.1;color:#FBFDFC">おつかれさまでした！</h1>
+<p style="font-size:56px;line-height:1.35;color:#F2B544">학습지 빈칸과 자기 의견 쓰기를 완성하고<br>확인 스탬프를 받으세요 💮</p>
+</section>
+</div>
+<div id="bar"><button id="prev" aria-label="이전">◀</button><span id="num"></span><button id="next" aria-label="다음">▶</button><button id="fs" aria-label="전체 화면">⛶</button></div>
+<div id="hint">→ / Enter / 클릭: 다음 · ←: 이전 · F: 전체 화면</div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')), cur=0, stage=document.getElementById('stage');
+  function builds(s){return [].slice.call(s.querySelectorAll('[data-build-in]')).sort(function(a,b){
+    var n=function(e){var m=(e.getAttribute('data-build-in')||'').match(/\d+/);return m?+m[0]:0};return n(a)-n(b);});}
+  function fit(){var k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')';}
+  function show(i,fromEnd){
+    cur=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,j){s.classList.toggle('on',j===cur)});
+    builds(slides[cur]).forEach(function(e){e.classList.toggle('hide',!fromEnd)});
+    document.getElementById('num').textContent=(cur+1)+' / '+slides.length;
+    history.replaceState(null,'','#slide-'+(cur+1));
+  }
+  function next(){var h=builds(slides[cur]).filter(function(e){return e.classList.contains('hide')});
+    if(h.length){h[0].classList.remove('hide');} else if(cur<slides.length-1) show(cur+1);}
+  function prev(){var v=builds(slides[cur]).filter(function(e){return !e.classList.contains('hide')});
+    if(v.length){v[v.length-1].classList.add('hide');} else if(cur>0) show(cur-1,true);}
+  function fs(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+  addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','Enter',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault();next();}
+    else if(['ArrowLeft','ArrowUp','Backspace','PageUp'].indexOf(e.key)>=0){e.preventDefault();prev();}
+    else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1,true);
+    else if(e.key==='f'||e.key==='F')fs();
+  });
+  stage.addEventListener('click',next);
+  document.getElementById('next').onclick=next; document.getElementById('prev').onclick=prev; document.getElementById('fs').onclick=fs;
+  var tx=null; addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(tx===null)return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?next():prev();}tx=null;});
+  addEventListener('resize',fit); fit();
+  var m=location.hash.match(/slide-(\d+)/); show(m?+m[1]-1:0);
+})();
+</script>
+</body></html>
