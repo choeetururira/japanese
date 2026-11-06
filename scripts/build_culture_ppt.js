@@ -10,11 +10,14 @@ const { applyTheme } = require("/root/.claude/skills/synced/58492139-558f-4c31-b
 
 const OUT = process.argv[2] || "deck.pptx";
 
+// 한글: Jua(주아) – 둥글고 굵어 멀리서도 잘 보이는 귀여운 글꼴 (Google Fonts, 무료)
+const KO = "Jua";
+
 // 교재의 청록 차양 + 주홍 포인트 + 겨자색
 const THEME = {
   name: "Bunka no Hiroba",
-  headFontFace: "맑은 고딕",
-  bodyFontFace: "맑은 고딕",
+  headFontFace: KO,
+  bodyFontFace: KO,
   colors: {
     dk1: "1E2426", lt1: "FFFFFF", dk2: "0B5E5C", lt2: "EAF6F5",
     accent1: "E4572E", accent2: "0B5E5C", accent3: "F2B544", accent4: "1AAFA5",
@@ -33,6 +36,62 @@ async function icon(Comp, color, size = 256) {
   const svg = ReactDOMServer.renderToStaticMarkup(React.createElement(Comp, { color: "#" + color, size: String(size) }));
   const buf = await sharp(Buffer.from(svg)).png().toBuffer();
   return "image/png;base64," + buf.toString("base64");
+}
+
+// ---------- 후처리: 한글 글꼴 지정 + 클릭 시 정답 등장 애니메이션 ----------
+const JSZip = require("jszip");
+
+// 한 개 도형이 클릭할 때 '밝기 변화(페이드)'로 나타나는 시퀀스
+function revealTiming(spids) {
+  let id = 3;
+  const clicks = spids.map((spid) => {
+    const a = id, b = id + 1, c = id + 2, d = id + 3, e = id + 4;
+    id += 5;
+    return `<p:par><p:cTn id="${a}" fill="hold"><p:stCondLst><p:cond delay="indefinite"/></p:stCondLst><p:childTnLst>`
+      + `<p:par><p:cTn id="${b}" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>`
+      + `<p:par><p:cTn id="${c}" presetID="10" presetClass="entr" presetSubtype="0" fill="hold" grpId="0" nodeType="clickEffect"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>`
+      + `<p:set><p:cBhvr><p:cTn id="${d}" dur="1" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst></p:cTn><p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl><p:attrNameLst><p:attrName>style.visibility</p:attrName></p:attrNameLst></p:cBhvr><p:to><p:strVal val="visible"/></p:to></p:set>`
+      + `<p:animEffect transition="in" filter="fade"><p:cBhvr><p:cTn id="${e}" dur="400"/><p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl></p:cBhvr></p:animEffect>`
+      + `</p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par>`;
+  }).join("");
+  return `<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>`
+    + `<p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>${clicks}</p:childTnLst></p:cTn>`
+    + `<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>`
+    + `<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst></p:seq>`
+    + `</p:childTnLst></p:cTn></p:par></p:tnLst>`
+    + `<p:bldLst>${spids.map((sp) => `<p:bldP spid="${sp}" grpId="0" animBg="1"/>`).join("")}</p:bldLst></p:timing>`;
+}
+
+async function postProcess(file, reveals) {
+  const fs = require("fs");
+  const zip = await JSZip.loadAsync(fs.readFileSync(file));
+  // 테마: 한글(동아시아) 글꼴도 Jua로
+  const tp = "ppt/theme/theme1.xml";
+  let theme = await zip.file(tp).async("string");
+  theme = theme.replace(/<a:ea typeface="[^"]*"\/>/g, `<a:ea typeface="${KO}"/>`)
+    .replace(/<a:font script="Hang" typeface="[^"]*"\/>/g, `<a:font script="Hang" typeface="${KO}"/>`);
+  zip.file(tp, theme);
+  // Jua는 원래 굵은 글꼴이라 '굵게'를 쓰면 뭉개짐 → 일본어(Meiryo)가 아닌 글자의 굵게 해제
+  const unbold = (x) => x.replace(/<a:(rPr|defRPr)\b([^>]*?)\sb="1"([^>]*?)(\/>|>([\s\S]*?)<\/a:\1>)/g,
+    (m, tag, pre, post, end, inner) => (inner && inner.includes("Meiryo")) ? m : `<a:${tag}${pre}${post}${end}`);
+  for (const f of Object.keys(zip.files).filter((n) => /^ppt\/(slides|slideLayouts)\/[^/]+\.xml$/.test(n))) {
+    zip.file(f, unbold(await zip.file(f).async("string")));
+  }
+  for (const { slide, names } of reveals) {
+    const sp = `ppt/slides/slide${slide}.xml`;
+    let xml = await zip.file(sp).async("string");
+    const spids = names.map((n) => {
+      const m = xml.match(new RegExp(`<p:cNvPr id="(\\d+)" name="${n}"`));
+      if (!m) throw new Error(`shape not found: ${n} in ${sp}`);
+      return m[1];
+    });
+    xml = xml.replace("</p:sld>", revealTiming(spids) + "</p:sld>");
+    zip.file(sp, xml);
+  }
+  // 폴더 항목 없이 파일만 다시 담기 (클라우드 열기 호환)
+  const out = new JSZip();
+  for (const f of Object.values(zip.files)) if (!f.dir) out.file(f.name, await f.async("nodebuffer"), { createFolders: false });
+  fs.writeFileSync(file, await out.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
 }
 
 // ---------- Layouts ----------
@@ -78,6 +137,7 @@ pres.defineSlideMaster({
     ["bowBig", fa.FaHandshake, "F2B544"], ["giftBig", fa.FaGift, "F2B544"], ["toriiBig", fa.FaToriiGate, "F2B544"], ["fireBig", gi.GiFireworkRocket, "F2B544"],
   ]) ic[k] = await icon(comp, col);
 
+  const clickReveal = []; // [{ slide: 번호, names: [objectName...] }]
   const txt = (sl, t, o) => sl.addText(t, { margin: 0, isTextBox: true, ...o });
   const card = (sl, x, y, w, h, name, color = C.background2) =>
     sl.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.15, fill: { color }, line: { type: "none" }, objectName: name });
@@ -98,27 +158,32 @@ pres.defineSlideMaster({
 
   // ---------- 퀴즈 ----------
   // items: [질문 runs, 정답 runs]
+  // 정답은 슬라이드 쇼에서 클릭(Enter)할 때마다 하나씩 나타납니다 (addClickReveal 참고)
   const quiz = (sectionTitle, num, items) => {
-    for (const reveal of [false, true]) {
-      const s = pres.addSlide({ masterName: "CONTENT", sectionTitle });
-      s.addText(reveal ? `확인 퀴즈 ${num} – 정답` : `확인 퀴즈 ${num}`, { placeholder: "title" });
-      items.forEach(([q, a], i) => {
-        const y = 1.55 + i * 1.1;
-        card(s, 0.6, y, 12.1, 0.95, `Q${i + 1} row`, C.background2);
-        s.addShape(pres.shapes.OVAL, { x: 0.8, y: y + 0.15, w: 0.65, h: 0.65, fill: { color: C.text2 }, line: { type: "none" }, objectName: `Q${i + 1} num circle` });
-        txt(s, String(i + 1), { x: 0.8, y: y + 0.15, w: 0.65, h: 0.65, fontSize: 24, bold: true, color: C.background1, align: "center", valign: "middle", objectName: `Q${i + 1} num` });
-        txt(s, q, { x: 1.65, y, w: 6.45, h: 0.95, fontSize: 24, color: C.text1, valign: "middle", objectName: `Q${i + 1} question` });
-        s.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-          x: 8.4, y: y + 0.12, w: 4.1, h: 0.71, rectRadius: 0.1,
-          fill: { color: reveal ? C.accent1 : C.background1 },
-          line: reveal ? { type: "none" } : { color: C.accent4, width: 2, dashType: "dash" },
-          objectName: `Q${i + 1} answer box`,
-        });
-        if (reveal) txt(s, a, { x: 8.5, y: y + 0.12, w: 3.9, h: 0.71, fontSize: 26, bold: true, color: C.background1, align: "center", valign: "middle", objectName: `Q${i + 1} answer` });
+    const s = pres.addSlide({ masterName: "CONTENT", sectionTitle });
+    s.addText(`확인 퀴즈 ${num}`, { placeholder: "title" });
+    const names = [];
+    items.forEach(([q, a], i) => {
+      const y = 1.55 + i * 1.1;
+      card(s, 0.6, y, 12.1, 0.95, `Q${i + 1} row`, C.background2);
+      s.addShape(pres.shapes.OVAL, { x: 0.8, y: y + 0.15, w: 0.65, h: 0.65, fill: { color: C.text2 }, line: { type: "none" }, objectName: `Q${i + 1} num circle` });
+      txt(s, String(i + 1), { x: 0.8, y: y + 0.15, w: 0.65, h: 0.65, fontSize: 24, color: C.background1, align: "center", valign: "middle", objectName: `Q${i + 1} num` });
+      txt(s, q, { x: 1.65, y, w: 6.45, h: 0.95, fontSize: 24, color: C.text1, valign: "middle", objectName: `Q${i + 1} question` });
+      s.addShape(pres.shapes.ROUNDED_RECTANGLE, {
+        x: 8.4, y: y + 0.12, w: 4.1, h: 0.71, rectRadius: 0.1,
+        fill: { color: C.background1 }, line: { color: C.accent4, width: 2, dashType: "dash" },
+        objectName: `Q${i + 1} answer blank`,
       });
-      s.addNotes(reveal ? "정답을 함께 확인하고, 틀린 문항은 해당 슬라이드로 돌아가 다시 짚어 주세요."
-        : "학생들이 공책이나 활동지에 답을 적게 한 뒤 다음 슬라이드에서 정답을 공개합니다.");
-    }
+      const name = `Q${i + 1} answer`;
+      s.addText(a, {
+        shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.1, x: 8.37, y: y + 0.09, w: 4.16, h: 0.77, margin: 0,
+        fill: { color: C.accent1 }, line: { type: "none" }, fontSize: 26, bold: true, color: C.background1,
+        align: "center", valign: "middle", objectName: name,
+      });
+      names.push(name);
+    });
+    clickReveal.push({ slide: pres.slides.length, names });
+    s.addNotes("학생들이 공책이나 활동지에 답을 적게 한 뒤, Enter(또는 클릭)를 누를 때마다 1번부터 정답이 하나씩 나타납니다. 틀린 문항은 앞 슬라이드로 돌아가 다시 짚어 주세요.");
   };
 
   // ================= 표지 =================
@@ -351,7 +416,7 @@ pres.defineSlideMaster({
     [[ko("신사나 절에서 파는, 길흉을 점치는 제비(뽑기)는?")], [jp("おみくじ")]],
     [[ko("오미쿠지에서 가장 좋은 운세는?")], [jp("大吉（だいきち）", { fontSize: 22 })]],
     [[ko("신사나 절에서 파는, 부적 같은 작은 주머니는?")], [jp("おまもり")]],
-    [[ko("오미쿠지에서 ‘흉’이 나오면 신사에 마련된 장소에 (   )")], [ko("묶어 둔다")]],
+    [[ko("‘흉’이 나오면 오미쿠지를 신사에 (   )")], [ko("묶어 둔다")]],
   ]);
 
   // ================= 문화광장 4: 불꽃 축제 =================
@@ -360,7 +425,7 @@ pres.defineSlideMaster({
   s = pres.addSlide({ masterName: "SECTION", sectionTitle: sec });
   txt(s, "문화광장 4", { x: 0.8, y: 1.7, w: 6, h: 0.8, fontSize: 32, bold: true, color: C.text2, objectName: "Section kicker" });
   s.addText("불꽃 축제와 관련된 직업", { placeholder: "title" });
-  s.addText([ko("키워드  "), jp("はなび\nはなびし", { bold: true }), ko("  (불꽃 연출가)")], { placeholder: "body" });
+  s.addText([ko("키워드  "), jp("はなび · はなびし", { bold: true })], { placeholder: "body" });
   s.addImage({ data: ic.fireBig, x: 10.4, y: 0.9, w: 1.8, h: 1.8, objectName: "Section icon" });
 
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: sec });
@@ -431,5 +496,6 @@ pres.defineSlideMaster({
 
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
+  await postProcess(OUT, clickReveal);
   console.log("wrote", OUT);
 })();
